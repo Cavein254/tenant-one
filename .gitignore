@@ -1,1 +1,21 @@
+# Python
+*.pyc
+__pycache__/
+*.log
+.env
 venv/
+env/
+
+# Django-specific
+db.sqlite3
+media/
+static_cdn/
+local_settings.py
+
+# IDE-specific (e.g., VS Code, PyCharm)
+.vscode/
+.idea/
+
+# Operating System specific
+.DS_Store
+Thumbs.db
