@@ -20,3 +20,13 @@ DATABASES = {
         "PORT": "3306",
     }
 }
+
+MULTITENANT_MAPPER_CLASS = 'core.mapper.TenantMapper'
+
+"""
+These commands are required by django-db-multitenants for management
+commands to work
+"""
+
+from db_multitenants.utils import update_from_env
+update_from_env(database_settings=DATABASES[default])
