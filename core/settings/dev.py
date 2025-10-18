@@ -1,29 +1,36 @@
-from .base import *
+from .base import *  # noqa
 import pymysql
+
 pymysql.install_as_MySQLdb()
 
 
 DEGUB = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 
-INSTALLED_APPS = INSTALLED_APPS + ['user',]
+INSTALLED_APPS = INSTALLED_APPS + [
+    "user",
+]  # noqa
 
-MIDDLEWARE = ['db_multitenant.middleware.MultiTenantMiddleware',] + MIDDLEWARE
+MULTITENANT_MAPPER_CLASS = "core.mapper.TenantMapper"
+
+
+MIDDLEWARE = [
+    "db_multitenant.middleware.MultiTenantMiddleware",
+] + MIDDLEWARE  # noqa
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'db_multitenant.db.backends.mysql',
-        'NAME': "tenants",
-        'USER': "myuser",
-        'PASSWORD': "mysuperpassword",
-        'HOST': "localhost",
+    "default": {
+        "ENGINE": "db_multitenant.db.backends.mysql",
+        "NAME": "tenants",
+        "USER": "myuser",
+        "PASSWORD": "mysuperpassword",
+        "HOST": "localhost",
         "PORT": "3306",
     }
 }
 
-MULTITENANT_MAPPER_CLASS = 'core.mapper.TenantMapper'
 DB_MULTITENANT_DEFAULT_DB = "tenants"
 
 """
@@ -32,4 +39,5 @@ commands to work
 """
 
 from db_multitenant.utils import update_from_env
-update_from_env(database_settings=DATABASES['default'])
+
+update_from_env(database_settings=DATABASES["default"])

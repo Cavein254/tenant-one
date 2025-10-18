@@ -2,3 +2,5 @@ django
 django-restframework
 cuid2 
 django-charid-field
+pymysql
+django-db-multitenant

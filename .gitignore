@@ -11,6 +11,7 @@ db.sqlite3
 media/
 static_cdn/
 local_settings.py
+staticfiles/
 
 # IDE-specific (e.g., VS Code, PyCharm)
 .vscode/
