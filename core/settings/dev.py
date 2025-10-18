@@ -1,18 +1,20 @@
 from .base import *
+import pymysql
+pymysql.install_as_MySQLdb()
 
 
-DEGUB = TRUE
+DEGUB = True
 
-ALLOWED_HOSTS = [*]
+ALLOWED_HOSTS = ['*']
 
 
-INSTALLED_APPS = INSTALLED_APPS
+INSTALLED_APPS = INSTALLED_APPS + ['user',]
 
 MIDDLEWARE = ['db_multitenant.middleware.MultiTenantMiddleware',] + MIDDLEWARE
 
 DATABASES = {
     'default': {
-        'ENGINE': 'db_multitenant.middleware.MultiTenantMiddleware',
+        'ENGINE': 'db_multitenant.db.backends.mysql',
         'NAME': "tenants",
         'USER': "myuser",
         'PASSWORD': "mysuperpassword",
@@ -22,11 +24,12 @@ DATABASES = {
 }
 
 MULTITENANT_MAPPER_CLASS = 'core.mapper.TenantMapper'
+DB_MULTITENANT_DEFAULT_DB = "tenants"
 
 """
 These commands are required by django-db-multitenants for management
 commands to work
 """
 
-from db_multitenants.utils import update_from_env
-update_from_env(database_settings=DATABASES[default])
+from db_multitenant.utils import update_from_env
+update_from_env(database_settings=DATABASES['default'])

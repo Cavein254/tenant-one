@@ -1,16 +1,16 @@
 services:
     mariadb:
-      image: mariadb: 10.6
-      enviroment:
+      image: mariadb:10.6
+      environment:
         MARIADB_ROOT_PASSWORD: supersecret
         MARIADB_DATABASE: tenants
         MARIADB_USER: myuser
         MARIADB_PASSWORD: mysuperpassword
       volumes:
-        - mariadb_data: /var/lib/mysql
+        - mariadb_data:/var/lib/mysql
+        - ./init.sql:/docker-entrypoint-initdb.d/init.sql
       ports:
-        -"3306:3306"
-      restart: unless-stopped
+        - 3306:3306
 
 volumes:
   mariadb_data:
